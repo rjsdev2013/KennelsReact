@@ -5,6 +5,10 @@ import { AnimalCard } from './components/animals/animalCard.js'
 import { EmployeeCard } from "./components/Employees/employeeCard"
 import { LocationCard } from "./components/Locations/locationCard"
 import { OwnerCard } from "./components/Owners/ownerCard"
+import { AnimalList } from "./components/animals/animalList"
+import { EmployeeList } from "./components/Employees/EmployeeList"
+import { LocationList } from "./components/Locations/LocationList"
+import { CustomerList } from "./components/Owners/OwnerList"
 
 
 export const ApplicationViews = () => {
@@ -15,10 +19,10 @@ export const ApplicationViews = () => {
                 <Route exact path="/" element={<Home />} />
 
                 {/* Render the animal list when http://localhost:3000/animals */}
-                <Route path="/animals" element={<AnimalCard />} />
-                <Route path="/Employees" element={<EmployeeCard />} />
-                <Route path="/Locations" element={<LocationCard />} />
-                <Route path="/Customers" element={<OwnerCard />} />
+                <Route path="/animals" element={<AnimalList />} />
+                <Route path="/Employees" element={<EmployeeList />} />
+                <Route path="/Locations" element={<LocationList />} />
+                <Route path="/Customers" element={<CustomerList />} />
             </Routes>
         </>
     )
