@@ -1,17 +1,25 @@
-import React from "react"
+import React, {useState} from "react"
+import { NavBar } from "./nav/NavBar"
+import { ApplicationViews } from "../ApplicationViews"
 import "./Kennel.css"
-import { AnimalCard } from "./animals/animalCard.js"
-import { EmployeeCard } from "./Employees/employeeCard.js"
-import { LocationCard } from "./Locations/locationCard.js"
-import { OwnerCard } from "./Owners/ownerCard.js"
-import { PropsAndState } from "./PropsAndState.js"
-import { NavBar } from "./nav/NavBar.js"
-import { ApplicationViews } from "../ApplicationViews.js"
 
-export const Kennel = () => (
-    <>
-        <NavBar/>
-        <ApplicationViews/>
-   
-    </>
-)
+export const Kennel = () => {
+    const [isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem("kennel_customer") !== null)
+
+    const setAuthUser = (user) => {
+        sessionStorage.setItem("kennel_customer", JSON.stringify(user))
+        setIsAuthenticated(sessionStorage.getItem("kennel_customer") !== null)
+    }
+
+    const clearUser = () => {
+        sessionStorage.clear();
+        setIsAuthenticated(sessionStorage.getItem("kennel_customer") !== null)
+      }
+
+    return (
+        <>
+            <NavBar clearUser={clearUser} isAuthenticated={isAuthenticated}/>
+            <ApplicationViews setAuthUser={setAuthUser} isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+        </>
+    )
+}
